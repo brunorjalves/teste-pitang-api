@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Mensagens {
 
-	@Autowired
-	private MessageSource messageSource;
-
+	private @Autowired MessageSource messageSource;
 	private MessageSourceAccessor accessor;
 
 	@PostConstruct

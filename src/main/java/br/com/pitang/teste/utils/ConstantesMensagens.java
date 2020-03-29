@@ -9,6 +9,8 @@ public interface ConstantesMensagens {
 
 	String EMAIL_ALREADY_EXISTS = "user.email.already.exists";
 	String LOGIN_ALREADY_EXISTS = "user.login.already.exists";
+	String INVALID_LOGIN_OR_PASSWORD = "geral.security.invalid.login.or.password";
 
 	String LICENSE_PLATE_ALREADY_EXISTS = "car.license.plate.already.exists";
+	String UNKNOWN_ERROR = "unknown.error";
 }

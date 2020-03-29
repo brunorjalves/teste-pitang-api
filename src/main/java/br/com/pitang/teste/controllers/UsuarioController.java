@@ -1,6 +1,7 @@
 package br.com.pitang.teste.controllers;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.validation.Valid;
 
@@ -25,8 +26,7 @@ import br.com.pitang.teste.services.UsuarioService;
 @RequestMapping("/users")
 public class UsuarioController {
 
-	@Autowired
-	protected UsuarioService usuarioService;
+	protected @Autowired UsuarioService usuarioService;
 
 	@GetMapping
 	public ResponseEntity<List<Usuario>> listarTodosUsuarios() {
@@ -36,14 +36,17 @@ public class UsuarioController {
 
 	@PostMapping
 	public ResponseEntity<Usuario> cadastrarUsuario(@Valid @RequestBody Usuario usuario) throws NegocioException {
-		Usuario usuarioSalvo = usuarioService.cadastrarOuAtualizar(usuario);
+		Usuario usuarioSalvo = usuarioService.cadastrar(usuario);
+		usuarioSalvo.setLastLogin(null);
+		usuarioSalvo.setCreatedAt(null);
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> buscarPeloId(@PathVariable Long id) {
 		Usuario usuario = usuarioService.buscarPeloId(id);
-		return ResponseEntity.ok(usuario);
+		return Objects.nonNull(usuario) ? ResponseEntity.ok(usuario)
+				: ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 	@PutMapping("/{id}")

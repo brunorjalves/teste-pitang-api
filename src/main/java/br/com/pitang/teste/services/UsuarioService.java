@@ -1,5 +1,6 @@
 package br.com.pitang.teste.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,22 +15,21 @@ import br.com.pitang.teste.exceptions.NegocioException;
 import br.com.pitang.teste.repositories.UsuarioRepository;
 import br.com.pitang.teste.utils.ConstantesMensagens;
 import br.com.pitang.teste.utils.Mensagens;
+import br.com.pitang.teste.utils.Utils;
 
 @Service
 public class UsuarioService {
 
-	@Autowired
-	protected UsuarioRepository usuarioRepository;
-
-	@Autowired
-	protected Mensagens mensagens;
+	protected @Autowired UsuarioRepository usuarioRepository;
+	protected @Autowired Mensagens mensagens;
 
 	public List<Usuario> listarTodos() {
 		return usuarioRepository.findAll();
 	}
 
-	public Usuario cadastrarOuAtualizar(Usuario usuario) throws NegocioException {
+	public Usuario cadastrar(Usuario usuario) throws NegocioException {
 		verificaAntesDeSalvar(usuario);
+		usuario.setPassword(Utils.critografarSenha(usuario.getPassword()));
 		return usuarioRepository.save(usuario);
 	}
 
@@ -85,6 +85,11 @@ public class UsuarioService {
 		if (Objects.nonNull(usuario)) {
 			throw new NegocioException(mensagens.get(ConstantesMensagens.EMAIL_ALREADY_EXISTS), HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	public void atualizarUltimoLogin(Usuario usuario) {
+		usuario.setLastLogin(LocalDate.now());
+		usuarioRepository.save(usuario);
 	}
 
 }

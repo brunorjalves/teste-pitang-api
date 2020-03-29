@@ -8,4 +8,6 @@ public interface CarroRepository extends JpaRepository<Carro, Long> {
 
 	Carro findByLicensePlate(String licensePlate);
 
+	Carro findByLicensePlateAndIdNot(String licensePlate, Long id);
+
 }
