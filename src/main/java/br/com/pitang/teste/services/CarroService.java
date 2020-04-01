@@ -81,6 +81,7 @@ public class CarroService {
 		if (Objects.nonNull(carro)) {
 			usuario.getCars().remove(carro);
 			usuarioService.atualizar(usuario.getId(), usuario);
+			carroRepository.delete(carro);
 		}
 	}
 
