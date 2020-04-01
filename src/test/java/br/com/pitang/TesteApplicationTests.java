@@ -3,10 +3,10 @@ package br.com.pitang;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class TesteApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
