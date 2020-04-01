@@ -36,6 +36,7 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		ex.printStackTrace();
 		return handleExceptionInternal(ex, new Erro(mensagens.get(ConstantesMensagens.INVALID_FIELDS), 400), headers,
 				HttpStatus.BAD_REQUEST, request);
 	}

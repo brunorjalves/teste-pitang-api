@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 @Entity
 @Table(name = "tb_user")
 public class Usuario {
@@ -74,7 +76,7 @@ public class Usuario {
 	@JsonInclude(value = Include.NON_NULL)
 	@NotNull
 	@Column(name = "created_at")
-	private LocalDate createdAt = LocalDate.now();
+	private LocalDate createdAt;
 
 	@JsonInclude(value = Include.NON_NULL)
 	@Column(name = "last_login")

@@ -30,6 +30,7 @@ public class UsuarioService {
 	public Usuario cadastrar(Usuario usuario) throws NegocioException {
 		verificaAntesDeSalvar(usuario);
 		usuario.setPassword(Utils.critografarSenha(usuario.getPassword()));
+		usuario.setCreatedAt(LocalDate.now());
 		return usuarioRepository.save(usuario);
 	}
 
