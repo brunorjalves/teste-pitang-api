@@ -22,7 +22,7 @@ public class CorsFilter implements Filter {
 
 	@Value("${cors.origin}")
 	private String origin;
-	
+
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
@@ -30,9 +30,6 @@ public class CorsFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 
-		System.out.println("Verificando para a origen -> " + origin);
-		System.out.println("Veio da origen -> " + request.getHeader("Origin"));
-		
 		response.setHeader("Access-Control-Allow-Origin", origin);
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 
