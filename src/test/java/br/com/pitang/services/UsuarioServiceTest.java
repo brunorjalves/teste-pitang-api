@@ -1,6 +1,5 @@
 package br.com.pitang.services;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -38,7 +37,7 @@ public class UsuarioServiceTest {
 	@Order(1)
 	public void listarTodosOsUsuariosSemDados() throws Exception {
 		List<Usuario> usuarios = usuarioService.listarTodos();
-		assertFalse(usuarios.isEmpty());
+		assertTrue(usuarios.isEmpty());
 	}
 
 	@Test
