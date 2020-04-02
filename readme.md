@@ -39,6 +39,13 @@ Exemplo de header
 Authorization: Bearer <seu.token.aqui>
 ```
 
+## Execução dos testes unitários
+Para executar os testes unitários, basta executá-los usando o mvn.
+
+```bash
+mvn test
+```
+
 ## Ambiente de produção
 A API encontra-se hospedada no heroku e pode ser acessada através do seguinte link <https://teste-pitang-api.herokuapp.com>. 
 
